@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Calculator</title>
+  <style>
+    body {
+      background-color: #DCDCDC;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .calculator {
+      margin-top: 290px;
+      width: 380px;
+    }
+    .display {
+      background-color: #D3D3D3;
+      text-align: right;
+      padding: 20px;
+      font-size: 24px;
+      width: 335px;
+      border: none;
+      color: black;
+      border-radius: 30px;
+    }
+    .result {
+      font-size: 50px;
+      color: gray;
+      text-align: right;
+      padding: 0 20px 10px 20px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 10px;
+    }
+    button {
+      padding: 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 20px;
+      background-color: #2C2C2C;
+      color: white;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    button:hover {
+      background-color: grey;
+      box-shadow: 0 0 10px rgb(255, 165, 0), 0 0 10px rgb(0, 191, 255), 0 0 10px rgb(144, 238, 144);
+    }
+    .equal {
+      background-color: #FF9800;
+      color: white;
+    }
+    .equal:hover {
+      background-color: #FFA726;
+      box-shadow: 0 0 30px orange;
+    }
+    .history-btn {
+      margin-bottom: 10px;
+      padding: 10px 20px;
+      font-size: 14px;
+      border-radius: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <button onclick="showHistory()" class="history-btn">History</button> <!-- 🔸 History Button -->
+    <input id="display" class="display" readonly>
+    <div class="result" id="result">CYBERPIXEL*</div>
+    <div class="buttons">
+      <button onclick="clearDisplay()">AC</button>
+      <button onclick="append('%')">%</button>
+      <button onclick="backspace()">⌫</button>
+      <button onclick="append('/')">÷</button>
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button onclick="append('*')">×</button>
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button onclick="append('-')">-</button>
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button onclick="append('+')">+</button>
+      <button onclick="append('00')">00</button>
+      <button onclick="append('0')">0</button>
+      <button onclick="append('.')">.</button>
+      <button class="equal" onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+    const result = document.getElementById('result');
+    let historyList = []; // 🔸 Store history here
+
+    function append(char) {
+      display.value += char;
+    }
+
+    function clearDisplay() {
+      display.value = '';
+      result.textContent = '';
+    }
+
+    function backspace() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculate() {
+      try {
+        const expression = display.value.replace(/\u00D7/g, '*').replace(/\u00F7/g, '/');
+        const evalResult = eval(expression);
+        result.textContent = '= ' + evalResult;
+        historyList.push(display.value + ' = ' + evalResult); // 🔸 Add to history
+      } catch {
+        result.textContent = 'Error';
+      }
+    }
+
+    function showHistory() {
+      if (historyList.length === 0) {
+        alert("No history yet.");
+        return;
+      }
+      let historyText = "Calculation History:\n\n" + historyList.join('\n');
+      alert(historyText);
+    }
+  </script>
+</body>
+</html>
