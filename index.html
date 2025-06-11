@@ -103,44 +103,53 @@
       <button class="equal" onclick="calculate()">=</button>
     </div>
   </div>
+<script>
+  // ✅ इसकी जगह ये नई वाली paste करो:
+  function append(char) {
+    display.value += char;
+    autoCalculate(); // auto‑result दिखाने के लिए
+  }
 
-  <script>
-    const display = document.getElementById('display');
-    const result = document.getElementById('result');
-    let historyList = []; // 🔸 Store history here
-
-    function append(char) {
-      display.value += char;
-    }
-
-    function clearDisplay() {
-      display.value = '';
+  function autoCalculate() {
+    try {
+      const exp = display.value;
+      const res = eval(exp);
+      result.textContent = '= ' + res;
+    } catch {
       result.textContent = '';
     }
+  }
 
-    function backspace() {
-      display.value = display.value.slice(0, -1);
-    }
+  function clearDisplay() {
+    display.value = '';
+    result.textContent = '';
+  }
 
-    function calculate() {
-      try {
-        const expression = display.value.replace(/\u00D7/g, '*').replace(/\u00F7/g, '/');
-        const evalResult = eval(expression);
-        result.textContent = '= ' + evalResult;
-        historyList.push(display.value + ' = ' + evalResult); // 🔸 Add to history
-      } catch {
-        result.textContent = 'Error';
-      }
-    }
+  function backspace() {
+    display.value = display.value.slice(0, -1);
+    autoCalculate(); // 🔁 backspace के बाद भी result update हो
+  }
 
-    function showHistory() {
-      if (historyList.length === 0) {
-        alert("No history yet.");
-        return;
-      }
-      let historyText = "Calculation History:\n\n" + historyList.join('\n');
-      alert(historyText);
+  function calculate() {
+    try {
+      const expression = display.value;
+      const evalResult = eval(expression);
+      result.textContent = '= ' + evalResult;
+      historyList.push(display.value + ' = ' + evalResult); // 🔸 Add to history
+    } catch {
+      result.textContent = 'Error';
     }
-  </script>
+  }
+
+  function showHistory() {
+    if (historyList.length === 0) {
+      alert("No history yet.");
+      return;
+    }
+    let historyText = "Calculation History:\n\n" + historyList.join('\n');
+    alert(historyText);
+  }
+</script>
+  
 </body>
 </html>
