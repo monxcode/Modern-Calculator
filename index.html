@@ -319,5 +319,24 @@
       popup.style.display = "none";
     }
   </script>
+document.addEventListener('keydown', function(e) {
+  const key = e.key;
+
+  if (/\d/.test(key)) {
+    append(key);
+  } else if (['+', '-', '*', '/'].includes(key)) {
+    append(key);
+  } else if (key === 'Enter') {
+    calculate();
+  } else if (key === 'Backspace') {
+    backspace();
+  } else if (key === 'Escape') {
+    clearDisplay();
+  } else if (key === '.') {
+    append('.');
+  } else if (key === '%') {
+    append('%');
+  }
+});
 </body>
 </html>
