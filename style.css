@@ -1,0 +1,207 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: #2b2b2b;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.calculator {
+  max-width: 400px;
+  margin: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-bottom: 30px;
+}
+
+.top-section {
+  padding: 20px 15px 10px;
+}
+
+.history-btn {
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.history-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+
+/* Clicking effect */
+.history-btn:active {
+  transform: scale(0.9);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.display {
+  font-family: 'Roboto Mono', monospace;
+  width: 100%;
+  background-color: #444;
+  border: none;
+  border-radius: 25px;
+  font-size: 30px;
+  padding: 15px;
+  color: white;
+  text-align: right;
+  overflow-x: auto;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+.result {
+  font-size: 28px;
+  color: lightgray;
+  text-align: center;
+  margin-top: 15px;
+  user-select: none;
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: 1px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 20px 15px;
+}
+
+button {
+  font-family: 'JetBrains Mono', monospace;
+  padding: 20px;
+  font-size: 22px;
+  border: none;
+  border-radius: 18px;
+  background-color: #3b3b3b;
+  color: white;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px #222;  /* हल्का 3D shadow */
+}
+
+button:active {
+  background-color: #555;
+  transform: scale(0.95) translateY(2px); /* दबने जैसा effect */
+  box-shadow: 0 2px #111; /* shadow छोटी हो जाएगी */
+}
+
+.equal {
+  background-color: #ff9800;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 4px #b86d00;
+}
+
+.equal:active {
+  background-color: #ffa726;
+  transform: scale(0.95) translateY(2px);
+  box-shadow: 0 2px #744800;
+}
+
+/* History popup styles */
+.popup-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-box {
+  background: #1e1e1e;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 350px;
+  width: 90%;
+  max-height: 70vh;
+  overflow-y: auto;
+  box-shadow: 0 0 20px #000;
+  animation: fadeIn 0.3s ease;
+}
+
+.popup-box h3 {
+  margin-top: 0;
+  font-size: 22px;
+  text-align: center;
+}
+
+.popup-box ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.popup-box ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid #444;
+  color: #ccc;
+}
+
+.close-btn {
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 10px;
+  float: right;
+  margin-top: -10px;
+  margin-right: -10px;
+  cursor: pointer;
+}
+
+.clear-history {
+  background: #e53935;
+  color: white;
+  border: none;
+  padding: 10px 1px;
+  border-radius: 12px;
+  margin-top: 15px;
+  width: 50%;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px #b71c1c; /* 3D shadow */
+}
+
+.clear-history:active {
+  transform: scale(0.95) translateY(2px); /* दबने जैसा effect */
+  box-shadow: 0 2px #7f0000; /* shadow कम हो जाएगी */
+}
+
+.footer-link {
+  margin-top: 15px;
+  font-size: 0.85rem;
+  font-family: 'Quicksand', sans-serif;
+  opacity: 0.6;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.footer-link a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-link a:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+}
