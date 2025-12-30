@@ -46,7 +46,7 @@ You can view the live preview or screenshots from the portfolio website.
 ---
 
 ## Project Status
-   Completed  ✓
+ Completed  ✓
 Future improvements may include scientific functions and theme switching.
 
 ---
